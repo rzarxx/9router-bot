@@ -1,0 +1,2 @@
+email1@domain.com|password123
+email2@domain.com|password456

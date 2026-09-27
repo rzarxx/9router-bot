@@ -1,0 +1,5 @@
+node_modules/
+akun.txt
+debug_screenshots/
+.env
+*.log
