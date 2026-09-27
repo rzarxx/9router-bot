@@ -124,7 +124,7 @@ async function loginAccount(account, index, total) {
   console.log('  Account ' + (index + 1) + '/' + total + ': ' + email);
   console.log('════════════════════════════════════════');
 
-  const browser = await puppeteer.launch({
+  const launchOptions = {
     headless: false,
     defaultViewport: null,
     args: [
@@ -134,7 +134,14 @@ async function loginAccount(account, index, total) {
       '--disable-features=SyncSetupPromo,ChromeSigninPromo',
       '--disable-signin-promo',
     ],
-  });
+  };
+
+  // Gunakan Google Chrome bawaan sistem jika dijalankan di Linux Server
+  if (fs.existsSync('/usr/bin/google-chrome')) {
+    launchOptions.executablePath = '/usr/bin/google-chrome';
+  }
+
+  const browser = await puppeteer.launch(launchOptions);
 
   let success = false;
 
